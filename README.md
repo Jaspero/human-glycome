@@ -1,22 +1,16 @@
-![Release](https://github.com/Jaspero/jms/workflows/Release/badge.svg)
-![Deploy CMS](https://github.com/Jaspero/jms/workflows/Deploy%20CMS/badge.svg)
-![Deploy Functions](https://github.com/Jaspero/jms/workflows/Deploy%20Functions/badge.svg)
-![Deploy Firestore Indexes](https://github.com/Jaspero/jms/workflows/Deploy%20Firestore%20Indexes/badge.svg)
-![Deploy Storage Rules](https://github.com/Jaspero/jms/workflows/Deploy%20Storage%20Rules/badge.svg)
-![Deploy Rules](https://github.com/Jaspero/jms/workflows/Deploy%20Rules/badge.svg)
-![Lighthouse CI](https://github.com/Jaspero/jms/workflows/Lighthouse%20CI/badge.svg)
+![Release](https://github.com/Jaspero/human-glycome/workflows/Release/badge.svg)
+![Deploy CMS](https://github.com/Jaspero/human-glycome/workflows/Deploy%20CMS/badge.svg)
+![Deploy Functions](https://github.com/Jaspero/human-glycome/workflows/Deploy%20Functions/badge.svg)
+![Deploy Firestore Indexes](https://github.com/Jaspero/human-glycome/workflows/Deploy%20Firestore%20Indexes/badge.svg)
+![Deploy Storage Rules](https://github.com/Jaspero/human-glycome/workflows/Deploy%20Storage%20Rules/badge.svg)
+![Deploy Rules](https://github.com/Jaspero/human-glycome/workflows/Deploy%20Rules/badge.svg)
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/jaspero-co/JMS)
 
-# JMS
+# Human Glycome
 
-JMS is a CMS based on Angular that is fully configurable through JSON schema-s.
-Currently it only supports [firestore](https://firebase.google.com/docs/firestore) as its
-back-end but other implementations are planed and instructions for writing your own integration can
-be found [here](https://github.com/Jaspero/jms/wiki/Custom-Integrations)
+## Why is this open source
 
-A live example can be found [here](https://github.com/Jaspero/jms).
+Jaspero benefits greatly from the open source community. This app in its entirety is made possible because of open source software. Because of this we try to open source as many of our projects as we can.
 
-For more information consult our wiki [here](https://github.com/Jaspero/jms/wiki).
-
-**Note:** JMS is in active development and shouldn't be used in a production environment.
+We don't have the required manpower and experties to build frameworks and tools the community could directly use in building awesome software, so by open sourcing our projects we hope people can find inspiration or code snippets to speed up development.
