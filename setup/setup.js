@@ -735,16 +735,153 @@ const MODULES = [
         type: 'ID'
       },
       name: {
-        label: 'Name',
-        component: {
-          type: 'input',
-          configuration: {
-            type: 'string'
-          }
-        }
+        label: 'Name'
       },
       link: {
-        type: 'Link'
+        label: 'Link'
+      }
+    }
+  },
+  {
+    id: 'associate-members',
+    name: 'Associate Members',
+    description: 'Associate Members',
+    authorization: {
+      read: ['admin']
+    },
+    layout: {
+      order: 0,
+      editTitleKey: 'name',
+      icon: 'supervised_user_circle',
+      filterModule: {},
+      sort: {
+        active: 'name',
+        direction: 'desc'
+      },
+      instance: {
+        segments: [
+          {
+            fields: ['/id', '/name', '/link']
+          }
+        ]
+      },
+      table: {
+        hideImport: true,
+        tableColumns: [
+          {
+            key: '/name',
+            label: 'Name',
+            sortable: true
+          },
+          {
+            key: '/link',
+            label: 'Link'
+          }
+        ],
+        actions: []
+      }
+    },
+    schema: {
+      properties: {
+        id: {
+          type: 'string'
+        },
+        name: {
+          type: 'string'
+        },
+        link: {
+          type: 'string'
+        }
+      }
+    },
+    definitions: {
+      id: {
+        label: 'ID'
+      },
+      name: {
+        label: 'Name'
+      },
+      link: {
+        label: 'Link'
+      }
+    }
+  },
+  {
+    id: 'full-members',
+    name: 'Full Member',
+    description: 'Full Members',
+    authorization: {
+      read: ['admin']
+    },
+    layout: {
+      order: 0,
+      editTitleKey: 'name',
+      icon: 'supervised_user_circle',
+      filterModule: {},
+      sort: {
+        active: 'title',
+        direction: 'desc'
+      },
+      instance: {
+        segments: [
+          {
+            fields: ['/id', '/title', '/fullName', '/institution', '/email', '/link']
+          }
+        ]
+      },
+      table: {
+        hideImport: true,
+        tableColumns: [
+          {
+            key: '/title',
+            label: 'Title',
+            sortable: true
+          },
+          {
+            key: '/fullName',
+            label: 'Full Name'
+          },
+          {
+            key: '/institution',
+            label: 'Institution'
+          }
+        ],
+      }
+    },
+    schema: {
+      properties: {
+        id: {
+          type: 'string'
+        },
+        fullName: {
+          type: 'string'
+        },
+        institution: {
+          type: 'string'
+        },
+        email: {
+          type: 'string'
+        },
+        link: {
+          type: 'string'
+        }
+      }
+    },
+    definitions: {
+      id: {
+        label: 'Id'
+      },
+      fullName: {
+        label: 'Full Name'
+      },
+      institution: {
+        label: 'Institution'
+      },
+      email: {
+        label: 'Email'
+      },
+      link: {
+        label: 'Link'
       }
     }
   },
