@@ -1,9 +1,9 @@
 {
   "targets": {
-    "jaspero-jms": {
+    "human-glyco": {
       "hosting": {
         "cms": [
-          "jaspero-jms"
+          "human-glyco-cms"
         ]
       }
     }
