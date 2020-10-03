@@ -885,6 +885,105 @@ const MODULES = [
       }
     }
   },
+  {
+    id: 'news',
+    name: 'News',
+    description: 'News',
+    authorization: {
+      read: ['admin']
+    },
+    layout: {
+      order: 0,
+      editTitleKey: 'name',
+      icon: 'supervised_user_circle',
+      filterModule: {},
+      sort: {
+        active: 'title',
+        direction: 'desc'
+      },
+      instance: {
+        segments: [
+          {
+            fields: ['/id', '/title', '/url', '/description', '/featuredImage', '/shortDescription', '/gallery', '/sendMail']
+          }
+        ]
+      },
+      table: {
+        hideImport: true,
+        tableColumns: [
+          {
+            key: '/title',
+            label: 'Title'
+          },
+          {
+            key: '/sendMail',
+            label: 'Send Mail'
+          }
+        ],
+      }
+    },
+    schema: {
+      properties: {
+        id: {
+          type: 'string'
+        },
+        title: {
+          type: 'string'
+        },
+        url: {
+          type: 'string'
+        },
+        description: {
+          type: 'string'
+        },
+        shortDescription: {
+          type: 'string'
+        },
+        featuredImage: {
+          type: 'string'
+        },
+        gallery: {
+          type: 'array'
+        }
+      }
+    },
+    definitions: {
+      id: {
+        label: 'Id'
+      },
+      title: {
+        label: 'Title'
+      },
+      url: {
+        label: 'Url'
+      },
+      description: {
+        label: 'Description'
+      },
+      shortDescription: {
+        label: 'Short Description'
+      },
+      featuredImage: {
+        label: 'Featured Image'
+      },
+      gallery: {
+        label: 'Gallery',
+        component: {
+          configuration: {
+            allowServerUpload: true,
+            allowUrl: true,
+            generatedImages: [{
+              filePrefix: 'thumb_m_',
+              width: 320,
+              height: 320
+            }],
+            maxSize: 10485760
+          },
+          type: 'gallery'
+        }
+      }
+    }
+  },
 ];
 
 const admin = require('firebase-admin');
