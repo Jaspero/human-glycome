@@ -334,7 +334,86 @@ const MODULES = [
         columnsMobile: 12
       }
     }
-  }
+  },
+  {
+    id: 'contact',
+    name: 'Contact',
+    description: 'Contact',
+    authorization: {
+      read: ['admin']
+    },
+    layout: {
+      order: 0,
+      editTitleKey: 'name',
+      icon: 'supervised_user_circle',
+      filterModule: {},
+      sort: {
+        active: 'createdOn',
+        direction: 'desc'
+      },
+      instance: {
+        segments: [{
+          fields: [
+            '/id',
+            '/name',
+            '/email',
+          ]
+        }]
+      },
+      table: {
+        hideImport: true,
+        tableColumns: [
+          {
+            key: '/name',
+            label: 'Name',
+            sortable: true
+          },
+          {
+            key: '/email',
+            label: 'Email'
+          },
+        ],
+        actions: [
+        ]
+      },
+    },
+    schema: {
+      properties: {
+        id: {
+          type: 'string'
+        },
+        name: {
+          type: 'string',
+        },
+        email: {
+          type: 'string'
+        },
+      }
+    },
+    definitions: {
+      id: {
+        type: 'ID'
+      },
+      name: {
+        label: 'Name',
+        component: {
+          type: 'input',
+          configuration: {
+            type: 'string'
+          }
+        }
+      },
+      email: {
+        label: 'Email',
+        component: {
+          type: 'input',
+          configuration: {
+            type: 'email'
+          }
+        }
+      },
+    }
+  },
 ];
 
 const admin = require('firebase-admin');
