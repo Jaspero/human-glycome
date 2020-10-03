@@ -516,6 +516,81 @@ const MODULES = [
       },
     }
   },
+  {
+    id: 'resources',
+    name: 'Resources',
+    description: 'Resources',
+    authorization: {
+      read: ['admin']
+    },
+    layout: {
+      order: 0,
+      editTitleKey: 'name',
+      icon: 'supervised_user_circle',
+      filterModule: {},
+      sort: {
+        active: 'name',
+        direction: 'desc'
+      },
+      instance: {
+        segments: [{
+          fields: [
+            '/id',
+            '/name',
+            '/url',
+            'content',
+          ]
+        }]
+      },
+      table: {
+        hideImport: true,
+        tableColumns: [
+          {
+            key: '/name',
+            label: 'Name',
+            sortable: true
+          },
+          {
+            key: '/url',
+            label: 'Url'
+          },
+        ],
+      },
+    },
+    schema: {
+      properties: {
+        id: {
+          type: 'string'
+        },
+        name: {
+          type: 'string'
+        },
+        url: {
+          type: 'string',
+        },
+        content: {
+          type: 'string'
+        },
+      }
+    },
+    definitions: {
+      id: {
+        type: 'ID'
+      },
+      name: {
+        label: 'Name',
+      },
+      url: {
+        label: 'Url',
+      },
+      content: {
+        label: 'Content',
+        component: {
+          type: 'tinymce'
+        }
+      },
+    }
+  },
 ];
 
 const admin = require('firebase-admin');
