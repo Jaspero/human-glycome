@@ -677,7 +677,77 @@ const MODULES = [
         }
       }
     }
-  }
+  },
+  {
+    id: 'glyco-databases',
+    name: 'Glyco Databases',
+    description: 'Glyco Databases',
+    authorization: {
+      read: ['admin']
+    },
+    layout: {
+      order: 0,
+      editTitleKey: 'name',
+      icon: 'supervised_user_circle',
+      filterModule: {},
+      sort: {
+        active: 'name',
+        direction: 'desc'
+      },
+      instance: {
+        segments: [
+          {
+            fields: ['/id', '/name', '/link']
+          }
+        ]
+      },
+      table: {
+        hideImport: true,
+        tableColumns: [
+          {
+            key: '/name',
+            label: 'Name',
+            sortable: true
+          },
+          {
+            key: '/link',
+            label: 'Link'
+          }
+        ],
+        actions: []
+      }
+    },
+    schema: {
+      properties: {
+        id: {
+          type: 'string'
+        },
+        name: {
+          type: 'string'
+        },
+        link: {
+          type: 'string'
+        }
+      }
+    },
+    definitions: {
+      id: {
+        type: 'ID'
+      },
+      name: {
+        label: 'Name',
+        component: {
+          type: 'input',
+          configuration: {
+            type: 'string'
+          }
+        }
+      },
+      link: {
+        type: 'Link'
+      }
+    }
+  },
 ];
 
 const admin = require('firebase-admin');
