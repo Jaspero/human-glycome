@@ -409,7 +409,7 @@ const MODULES = [
     name: 'Education',
     description: 'Education',
     authorization: {
-      read: ['admin']
+      write: ['admin']
     },
     layout: {
       order: 0,
@@ -513,7 +513,7 @@ const MODULES = [
     name: 'Resources',
     description: 'Resources',
     authorization: {
-      read: ['admin']
+      write: ['admin']
     },
     layout: {
       order: 0,
@@ -585,7 +585,7 @@ const MODULES = [
     name: 'Projects',
     description: 'Projects',
     authorization: {
-      read: ['admin']
+      write: ['admin']
     },
     layout: {
       order: 0,
@@ -683,7 +683,7 @@ const MODULES = [
     name: 'Glyco Databases',
     description: 'Glyco Databases',
     authorization: {
-      read: ['admin']
+      write: ['admin']
     },
     layout: {
       order: 0,
@@ -747,7 +747,7 @@ const MODULES = [
     name: 'Associate Members',
     description: 'Associate Members',
     authorization: {
-      read: ['admin']
+      write: ['admin']
     },
     layout: {
       order: 0,
@@ -811,7 +811,7 @@ const MODULES = [
     name: 'Full Member',
     description: 'Full Members',
     authorization: {
-      read: ['admin']
+      write: ['admin']
     },
     layout: {
       order: 0,
@@ -890,7 +890,7 @@ const MODULES = [
     name: 'News',
     description: 'News',
     authorization: {
-      read: ['admin']
+      write: ['admin']
     },
     layout: {
       order: 0,
