@@ -22,6 +22,7 @@ jobs:
           npm --prefix functions ci
           npm --prefix functions run build
           sudo npm install -g firebase-tools
+          firebase functions:delete ssr --region us-central1
       - name: Set project
         run: npm run firebase -- use human-glycome --token $FIREBASE_TOKEN
         env:
