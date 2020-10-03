@@ -17,8 +17,8 @@ const COLLECTIONS = [
            * firebase dashboard.
            */
           {
-            email: 'test@test.com',
-            role: 'user'
+            email: 'sven.djanis@gmail.com',
+            role: 'admin'
           }
         ]
       },

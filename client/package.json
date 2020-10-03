@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start:cms": "ng serve --project=cms --port 4000",
+    "build:cms": "ng build --project=cms --prod",
     "start:website": "ng serve --project=website",
     "build": "node timestamp.js && ng build --prod --client",
     "postinstall": "ngcc",
