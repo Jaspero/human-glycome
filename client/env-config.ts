@@ -3,12 +3,12 @@
  */
 export const ENV_CONFIG = {
   firebase: {
-    apiKey: "AIzaSyBpOVW-c-ExPTUHRAXRO8-yTUVPq0pKS1g",
-    authDomain: "jaspero-jms.firebaseapp.com",
-    databaseURL: "https://jaspero-jms.firebaseio.com",
-    projectId: "jaspero-jms",
-    storageBucket: "jaspero-jms.appspot.com",
-    messagingSenderId: "82190793734",
-    appId: "1:82190793734:web:e6abf3c3a3bbb744"
+    apiKey: 'AIzaSyBVK-OnAr3anNlpTYkXLFS_iaby24cv8II',
+    authDomain: 'human-glycome.firebaseapp.com',
+    databaseURL: 'https://human-glycome.firebaseio.com',
+    projectId: 'human-glycome',
+    storageBucket: 'human-glycome.appspot.com',
+    messagingSenderId: '233608642790',
+    appId: '1:233608642790:web:ffd8a2c8037cabce347b27'
   }
 };
