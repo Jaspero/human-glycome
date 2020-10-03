@@ -1,0 +1,15 @@
+<section class="bg-img p-y-m">
+  <div class="grid">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12">
+      <h1 class="c-dt-primary"><span class="title-dt">{{resource.name}}</span></h1>
+    </div>
+  </div>
+</section>
+
+<section class="p-b-l">
+  <div class="grid">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12">
+      <div class="read-format" [innerHtml]="resource.content | jpSanitize:'html'"></div>
+    </div>
+  </div>
+</section>

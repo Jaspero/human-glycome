@@ -44,6 +44,7 @@
               }
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/jsoneditor/dist/jsoneditor.min.css",
               "projects/cms/src/styles.scss"
             ],
@@ -66,7 +67,6 @@
               "jsoneditor",
               "flat",
               "json-pointer",
-
               "tinymce/plugins/autolink",
               "tinymce/plugins/lists",
               "tinymce/plugins/fullscreen",
@@ -140,6 +140,7 @@
               "projects/cms/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/cms/src/styles.scss"
             ],
             "scripts": []
@@ -292,6 +293,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "cms"
 }

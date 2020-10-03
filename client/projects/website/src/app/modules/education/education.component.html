@@ -1,0 +1,28 @@
+<section class="bg-img p-y-m">
+  <div class="grid">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12">
+      <h1 class="c-dt-primary"><span class="title-dt">Education</span></h1>
+    </div>
+  </div>
+</section>
+
+<section class="p-b-l">
+  <div class="grid">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12">
+
+      <div class="read-format" *ngFor="let edu of education$ | async">
+        <h4>{{edu.title}}</h4>
+        <p><small>{{edu.createdAt | date:'mediumDate'}}</small></p>
+        <p>{{edu.shortDescription}}</p>
+        <p><a [routerLink]="edu._id">Read more</a></p>
+        <hr>
+      </div>
+
+      <div class="ta-center">
+        <button class="btn" (click)="loadMore()">
+          Load more
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

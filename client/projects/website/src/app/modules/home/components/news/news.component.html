@@ -1,0 +1,21 @@
+<h3 class="m-b-m"><span class="title-lt">News</span></h3>
+
+<article class="bg-lt-primary m-b-m p-a-m" *ngFor="let item of news$ | async; jpTrackByField">
+  <p><small class="ff-secondary">{{item.createdAt | date:'mediumDate'}}</small></p>
+  <a [routerLink]="['/news', item.url]">
+    <h5 class="m-b-s">{{item.title}}</h5>
+  </a>
+  <p class="m-b-s read-format" *ngIf="item.shortDescription" [innerHtml]="item.shortDescription | jpSanitize:'html'"></p>
+  <img *ngIf="item.featuredImage" alt="featured" [jasperoLibraryImage]="item.featuredImage" [modifications]="imageModifications">
+  <div class="flex jc-center m-t-s">
+    <button class="btn" [routerLink]="['/news', item.url]">
+      Read more...
+    </button>
+  </div>
+</article>
+
+<div class="ta-center">
+  <button class="btn" [class.loading]="loading$ | async" [disabled]="cantLoadMore$ | async" (click)="loadMore()">
+    Load More
+  </button>
+</div>

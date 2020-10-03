@@ -1,0 +1,48 @@
+<div class="page-loading" *ngIf="loading">
+  <mat-spinner [diameter]="40"></mat-spinner>
+</div>
+
+<section class="bg-img p-y-m">
+  <div class="grid">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12">
+      <h1 class="c-dt-primary"><span class="title-dt">Projects</span></h1>
+    </div>
+  </div>
+</section>
+
+<section class="p-b-l">
+  <div class="grid">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12" style="overflow-y: auto">
+
+      <div class="read-format">
+
+        <br>
+        <p>Individual, independently funded, projects that contribute to the goals of the Human Glycome Project are:</p>
+
+        <article *ngFor="let category of categories$ | async">
+          <h6>{{category.category}}</h6>
+          <table>
+            <tr>
+              <th>Short Name</th>
+              <th>Description</th>
+              <th>Coordinating Institution</th>
+            </tr>
+            <tr *ngFor="let project of category.projects">
+              <td>{{project.shortName}}</td>
+              <td>{{project.description}}</td>
+              <td>{{project.coordinatingInstitution}}</td>
+            </tr>
+          </table>
+          <br>
+        </article>
+
+        <h6>
+          To include your projects in projects of the Human Glycome Project, please send short description of the project to the Steering Committee of the Human Glycome Project at
+          <a href="mailto:info@human-glycome.org?Subject=Project%20Addition%20Request" target="_top">info@human-glycome.org</a>
+        </h6>
+
+      </div>
+
+    </div>
+  </div>
+</section>

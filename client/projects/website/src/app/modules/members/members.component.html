@@ -1,0 +1,68 @@
+<div class="page-loading" *ngIf="loading">
+  <mat-spinner [diameter]="40"></mat-spinner>
+</div>
+
+<section class="bg-img p-y-m">
+  <div class="grid">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12">
+      <h1 class="c-dt-primary"><span class="title-dt">Members</span></h1>
+    </div>
+  </div>
+</section>
+
+<section class="p-b-l">
+  <div class="grid">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12">
+
+      <div class="read-format">
+
+        <br>
+        <p>Here you will find and alphabetical list of current full members and associate members of Human Glycome Project. If you would like to participate in the project or pledge the resources, apply for the membership.</p>
+        <h5>Full Members</h5>
+        <ul>
+          <li *ngFor="let member of fullMembers">
+            <a [href]="member.link" target="_blank" rel="noopener">
+              {{member.title}}
+              {{member.fullName}}
+            </a>
+          </li>
+        </ul>
+        <p>Each Full member of the Human Glycome Project is expected to be an independent principal investigator whose laboratory will contribute to the goals of Human Glycome Project by leading an independently funded project that will result in depositing data in the Human Glycome Project standardized repositories. Full Members will also have access to specific shared materials for analyses in multiple institutions.</p>
+
+        <h5>Associate Members</h5>
+        <ul>
+          <li *ngFor="let member of associateMembers">
+            <a [href]="member.link" target="_blank" rel="noopener">{{member.name}}</a>
+          </li>
+        </ul>
+        <p>Any researcher, company or an institution that shares vision of the HGP can become an associate member by pledging resources or services to the glycoscience community, or by participating in education and dissemination activities.</p>
+        <p>Interested candidates should send an email to the Human Glycome Project Steering Committee at <a href="mailto:info@human-glycome.org?Subject=Associate%20member%20request" target="_top">info@human-glycome.org</a>.</p>
+
+        <hr>
+
+        <form *ngIf="form" class="bg-lt-primary p-x-m p-t-s p-b-m" (submit)="send()" [formGroup]="form">
+          <h5>Mailing List</h5>
+          <p>Researchers, journalists, educators and other individuals interested in following and  sharing the latest scientific advances and news related to Human Glycome Project can sign up for our mailing list.</p>
+
+          <div class="w-full">
+            <mat-form-field class="p-y-s">
+              <input matInput placeholder="Name" autocomplete="name" formControlName="name">
+            </mat-form-field>
+          </div>
+
+          <mat-form-field class="p-y-s">
+            <input type="email" matInput placeholder="Email" autocomplete="email" formControlName="email">
+          </mat-form-field>
+          <mat-checkbox color="primary" formControlName="permission">
+            <small>I have read and agree to The Human Glycome Project <a class="link" routerLink="/privacy-policy">Privacy Policy</a>. I give my consent to The Human Glycome Project to store my email and periodically send me news.</small>
+          </mat-checkbox>
+          <div class="ta-center p-y-m">
+            <button class="btn" [class.loading]="sentLoading$ | async" [disabled]="form.invalid">Send</button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</section>

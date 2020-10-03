@@ -1,0 +1,27 @@
+@import "../../../scss/variables.scss";
+
+.intro-description {
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: calc((100% - 40px) / 3);
+
+  @media (max-width: $screen-m) {
+    position: static;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.support-list {
+  padding: 0;
+  list-style: none;
+  transition: all .3s ease-in-out;
+}
+
+.support-list > li {
+  border-left: 1px solid $fg-dt-tertiary;
+  padding: 2px 2px 2px 10px;
+}

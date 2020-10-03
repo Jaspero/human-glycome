@@ -1,0 +1,75 @@
+@import "../variables";
+
+/**
+ * Buttons
+ *
+ * General style for buttons
+ *
+ *============================================================================*/
+
+
+
+
+
+/* Default button style
+ *============================================================================*/
+
+.btn {
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  padding: 15px 35px;
+  background: $acc-secondary;
+  transition: .2s;
+  color: $fg-dt-primary;
+  box-shadow: 8px 8px 0 0 #ccc;
+
+  &:hover, &:active {
+    background: lighten($acc-secondary, 15%);
+  }
+
+  &:disabled {
+    opacity: .25;
+    cursor: not-allowed;
+  }
+
+}
+
+
+
+
+
+/* Button loading style
+ *============================================================================*/
+
+.btn.loading {
+  pointer-events: none;
+  position: relative;
+  border-color: $fg-lt-primary;
+  color: transparent;
+
+  span, svg, img {
+    opacity: 0;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 1.8rem;
+    width: 1.8rem;
+    border-radius: 50%;
+    border-width: .2rem;
+    border-style: solid;
+    border-color: $fg-lt-primary $fg-lt-primary transparent transparent;
+    animation: loading-animation .75s linear infinite;
+
+    @keyframes loading-animation {
+      0%   { transform: translate(-50%,-50%) rotate(0deg); }
+      100% { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+  }
+}

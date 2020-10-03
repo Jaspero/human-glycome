@@ -1,0 +1,159 @@
+@import "../variables";
+
+/**
+ * Read format
+ *
+ * Overrides that change the page's text size, contrast, and layout for better
+ * readability.
+ *
+ *============================================================================*/
+
+
+
+
+
+/* Layout
+ *============================================================================*/
+
+.read-format {
+  width: 100%;
+  margin: 0 auto;
+  color: #333333;
+}
+
+
+
+
+
+/* Headings
+ *============================================================================*/
+
+.read-format {
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  h1 { font-size: 40px; }
+  h2 { font-size: 36px; }
+  h3 { font-size: 32px; }
+  h4 { font-size: 28px; }
+  h5 { font-size: 24px; }
+  h6 { font-size: 20px; }
+
+}
+
+
+
+
+
+/* Table
+ *============================================================================*/
+
+.read-format table {
+  border-top: 1px solid;
+
+  th {
+    font-size: 12px;
+    text-align: left;
+    border-bottom: 1px solid;
+    font-family: $font-secondary;
+    padding: 16px 4px;
+  }
+
+  td {
+    font-size: 14px;
+    padding: 8px 4px;
+  }
+
+  td, th {
+    border-bottom: 1px solid;
+  }
+
+  tr:hover {
+    background: rgba(255,255,255,.8);
+  }
+
+}
+
+
+
+
+
+/* Text elements
+ *============================================================================*/
+
+.read-format span {
+  display: inline;
+}
+
+.read-format a {
+  display: inline;
+  color: dodgerblue;
+  text-decoration: underline;
+}
+
+.read-format a:visited {
+  color: rebeccapurple;
+  text-decoration: underline;
+}
+
+
+
+
+
+/* Other elements
+ *============================================================================*/
+
+iframe {
+  width: 100%;
+}
+
+
+
+
+
+/* Margin control
+ *============================================================================*/
+
+.read-format {
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 2em 0 1em 0;
+  }
+
+  p,
+  table,
+  img {
+    margin: 1em 0;
+  }
+
+  ul, ol {
+    margin: 1rem 0 2em 0;
+  }
+
+  hr {
+    margin: 5em 0;
+  }
+
+}
+
+
+
+
+
+/* Example
+ *============================================================================*/
+/**
+ * <div class="read-format">
+ *   <h1>Heading</h1>
+ *   <p>This text is formated for readability. This includes some of the following:</p>
+ *   <ul>
+ *     <li>Optimal font size,</li>
+ *     <li>Optimal font color,</li>
+ *     <li>Optimal number of characters per line,</li>
+ *     <li>Good white space hierarchy.</li>
+ *   </ul>
+ * </div>
+ */

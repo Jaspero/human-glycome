@@ -1,0 +1,42 @@
+@import "../variables";
+
+/**
+ * Overrides
+ *
+ * Overrides for external components
+ *
+ *============================================================================*/
+
+
+
+
+
+/* Material checkbox
+ *============================================================================*/
+
+.mat-checkbox-layout.mat-checkbox-layout {
+  white-space: normal;
+}
+
+.mat-checkbox-label.mat-checkbox-label {
+  line-height: 1.4;
+  font-family: $font-primary;
+}
+
+
+
+
+
+/* Material dialog
+ *============================================================================*/
+
+.cdk-overlay-pane {
+  width: unset !important;
+  @media (max-width: $screen-xs) { max-width: 100vw !important; }
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+  margin: 0 auto !important;
+  width: auto !important;
+}

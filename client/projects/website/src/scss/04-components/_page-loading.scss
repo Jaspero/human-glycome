@@ -1,0 +1,36 @@
+/**
+ * Page loading
+ *
+ * Container for a loading spinner
+ *
+ *============================================================================*/
+
+
+
+
+
+/* Page loading container
+ *============================================================================*/
+
+.page-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+/* Example
+ *============================================================================*/
+/**
+  * <div class="page-loading" *ngIf="loading">
+  *   <mat-spinner [diameter]="40"></mat-spinner>
+  * </div>
+ */

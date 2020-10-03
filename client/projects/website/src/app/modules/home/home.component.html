@@ -1,0 +1,36 @@
+<div class="grid grid-full grid-no-gutter">
+  <div class="col-4 col-m-12">
+    <section class="intro-description bg-img c-dt-primary p-a-m">
+      <h1 style="font-size:32px;" class="m-b-m c-dt-primary"><span class="title-dt">The Human Glycome Project</span></h1>
+      <blockquote>“ Glycans are directly involved in the pathophysiology of every major disease… Additional knowledge from glycoscience will be needed to realize the goals of personalized medicine and to take advantage of the substantial investments in human genome and proteome research and its impact on human health. ”</blockquote>
+      <cite>— US National Academies, 2012</cite>
+      <br>
+      <p class="m-b-m">The Human Glycome Project addresses this major societal challenge.</p>
+      <ng-container *ngIf="currentIterationIndex !== null">
+        <h5 class="m-b-m c-dt-primary">
+        <a class="title-dt" [routerLink]="['/members']">
+          {{iterations[currentIterationIndex].title}}
+        </a>
+        </h5>
+        <ul class="support-list m-b-m">
+          <li *ngFor="let item of iterations[currentIterationIndex].items">
+            <a class="link" [href]="item.link" target="_blank" rel="noopener">{{item.name}}</a>
+          </li>
+        </ul>
+      </ng-container>
+    </section>
+  </div>
+  <div class="col-8 col-m-12">
+    <div class="grid grid-full p-a-s">
+      <div class="col-6 col-s-12">
+        <jaspero-news></jaspero-news>
+      </div>
+      <div class="col-6 col-s-12">
+        <h3 class="m-b-m"><span class="title-lt">Latest Tweets</span></h3>
+        <a #twitter class="twitter-timeline" data-dnt="true" data-theme="light" href="https://twitter.com/GlycomeHuman?ref_src=twsrc%5Etfw">
+          Tweets by GlycomeHuman
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
