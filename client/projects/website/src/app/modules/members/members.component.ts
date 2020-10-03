@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RxDestroy} from '@jaspero/ng-helpers';
-import {BehaviorSubject, forkJoin, from} from 'rxjs';
-import {finalize, takeUntil} from 'rxjs/operators';
+import {BehaviorSubject, forkJoin, from, Observable} from 'rxjs';
+import {finalize, map, takeUntil, tap} from 'rxjs/operators';
 import {AssociateMembers} from '../../shared/interfaces/collections/associate-members.interface';
 import {FullMembers} from '../../shared/interfaces/collections/full-members.interface';
 import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
@@ -31,32 +31,51 @@ export class MembersComponent extends RxDestroy implements OnInit {
     super();
   }
 
-  fullMembers: FullMembers[] = [];
-  associateMembers: AssociateMembers[] = [];
+  fullMembers$: Observable<FullMembers[]>;
+  associateMembers$: Observable<AssociateMembers[]>;
   loading = true;
   form: FormGroup;
 
   sentLoading$ = new BehaviorSubject(false);
 
   ngOnInit() {
-    /*forkJoin(
-      this.jasperoApi.get('full-members', {sort: {fullName: 1}}),
-      this.jasperoApi.get('associate-members', {sort: {name: 1}})
-    )
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(res => {
-        this.fullMembers = res[0].data;
-        this.associateMembers = res[1].data;
-        this.loading = false;
-        this.buildForm();
-        this.cdr.detectChanges();
-      });*/
 
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
       permission: [false, Validators.requiredTrue]
     });
+
+    this.fullMembers$ = this.afs
+      .collection(FirestoreCollection.FullMembers)
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(action => ({
+            id: action.payload.doc.id,
+            ...(action.payload.doc.data() as any)
+          }))
+        ),
+        finalize(() => {
+          this.loading = false
+        })
+      );
+
+    this.associateMembers$ = this.afs
+      .collection(FirestoreCollection.AssMembers)
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(action => ({
+            id: action.payload.doc.id,
+            ...(action.payload.doc.data() as any)
+          }))
+        ),
+        finalize(() => {
+          this.loading = false
+        })
+      );
+
   }
 
   send() {

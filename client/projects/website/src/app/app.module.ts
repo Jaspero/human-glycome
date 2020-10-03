@@ -16,6 +16,9 @@ import {NewsPageModule} from './modules/news-page/news-page.module';
 import {appInit} from './shared/helpers/app-init';
 import {ApiInterceptorService} from './shared/services/api-interceptor/api-interceptor.service';
 import {SharedModule} from './shared/shared.module';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {ENV_CONFIG} from '../../../../env-config';
+import {AngularFireModule} from '@angular/fire';
 
 /**
  * Additional initial setup can be added
@@ -43,6 +46,8 @@ export function init(injector: Injector) {
     BrowserAnimationsModule,
     NewsPageModule,
     TransferHttpCacheModule,
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireModule.initializeApp(ENV_CONFIG.firebase),
 
     // External
     SimpleNotificationsModule.forRoot({
