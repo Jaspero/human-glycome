@@ -348,7 +348,7 @@ const MODULES = [
       icon: 'supervised_user_circle',
       filterModule: {},
       sort: {
-        active: 'createdOn',
+        active: 'name',
         direction: 'desc'
       },
       instance: {
@@ -409,6 +409,108 @@ const MODULES = [
           type: 'input',
           configuration: {
             type: 'email'
+          }
+        }
+      },
+    }
+  },
+  {
+    id: 'education',
+    name: 'Education',
+    description: 'Education',
+    authorization: {
+      read: ['admin']
+    },
+    layout: {
+      order: 0,
+      editTitleKey: 'name',
+      icon: 'supervised_user_circle',
+      filterModule: {},
+      sort: {
+        active: 'createdAt',
+        direction: 'desc'
+      },
+      instance: {
+        segments: [{
+          fields: [
+            '/id',
+            '/createdAt',
+            '/title',
+            '/content',
+            '/shortDescription',
+            '/imageUrl',
+          ]
+        }]
+      },
+      table: {
+        hideImport: true,
+        tableColumns: [
+          {
+            key: '/title',
+            label: 'Title',
+            sortable: true
+          },
+          {
+            key: '/shortDescription',
+            label: 'Short Description'
+          },
+        ],
+      },
+    },
+    schema: {
+      properties: {
+        id: {
+          type: 'string'
+        },
+        createdAt: {
+          type: 'number'
+        },
+        title: {
+          type: 'string',
+        },
+        content: {
+          type: 'string'
+        },
+        shortDescription: {
+          type: 'string'
+        },
+        imageUrl: {
+          type: 'string'
+        },
+      }
+    },
+    definitions: {
+      id: {
+        type: 'ID'
+      },
+      createdAt: {
+        label: 'Created On',
+        formatOnLoad: '(value) => value || Date.now()',
+        component: {
+          type: 'date',
+          configuration: {
+            format: 'number'
+          }
+        }
+      },
+      title: {
+        label: 'Title',
+      },
+      shortDescription: {
+        label: 'Short Description',
+      },
+      content: {
+        label: 'Content',
+        component: {
+          type: 'tinymce'
+        }
+      },
+      imageUrl: {
+        label: 'Slika',
+        component: {
+          type: 'image',
+          configuration: {
+            maxSize: 10485760
           }
         }
       },
