@@ -15,7 +15,7 @@
 </article>
 
 <div class="ta-center">
-  <button class="btn" [class.loading]="loading$ | async" [disabled]="cantLoadMore$ | async" (click)="loadMore()">
+  <button class="btn" [class.loading]="loading$ | async" [disabled]="cantLoadMore$ | async" (click)="loadMore$.next(true)">
     Load More
   </button>
 </div>
