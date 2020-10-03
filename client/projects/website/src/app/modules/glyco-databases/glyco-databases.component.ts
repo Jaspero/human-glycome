@@ -10,7 +10,7 @@ import {GlycoDatabases} from '../../shared/interfaces/collections/glyco-database
 import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
 
 @Component({
-  selector: 'jaspero-glyco-databases',
+  selector: 'hg-glyco-databases',
   templateUrl: './glyco-databases.component.html',
   styleUrls: ['./glyco-databases.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

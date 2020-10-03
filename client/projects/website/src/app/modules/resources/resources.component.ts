@@ -9,7 +9,7 @@ interface StrippedResource {
 }
 
 @Component({
-  selector: 'jaspero-resources',
+  selector: 'hg-resources',
   templateUrl: './resources.component.html',
   styleUrls: ['./resources.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

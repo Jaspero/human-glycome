@@ -994,7 +994,7 @@ const serviceAccount = require('./serviceAccountKey.json');
  */
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://jaspero-jms.firebaseio.com'
+  databaseURL: 'https://human-glycome.firebaseio.com'
 });
 
 async function exec() {

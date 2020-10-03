@@ -13,7 +13,7 @@ import {StateService} from '../../shared/services/state/state.service';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
-  selector: 'jaspero-news-page',
+  selector: 'hg-news-page',
   templateUrl: './news-page.component.html',
   styleUrls: ['./news-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

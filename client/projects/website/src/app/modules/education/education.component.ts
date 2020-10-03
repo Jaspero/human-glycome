@@ -7,7 +7,7 @@ import {Education} from '../../shared/interfaces/education/education-interface';
 import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
 
 @Component({
-  selector: 'jaspero-education',
+  selector: 'hg-education',
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

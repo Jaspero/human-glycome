@@ -10,7 +10,7 @@ import {Response} from 'express';
 import {BROWSER_CONFIG} from '../../shared/consts/browser-config.const';
 
 @Component({
-  selector: 'jaspero-page-not-found',
+  selector: 'hg-page-not-found',
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

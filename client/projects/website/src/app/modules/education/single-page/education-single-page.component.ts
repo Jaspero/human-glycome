@@ -6,7 +6,7 @@ import {ObjectIdHelper} from '../../../shared/helpers/object-id.helper';
 import {JasperoApiService} from '../../../shared/services/jaspero-api/jaspero-api.service';
 
 @Component({
-  selector: 'jaspero-education-single-page',
+  selector: 'hg-education-single-page',
   templateUrl: './education-single-page.component.html',
   styleUrls: ['./education-single-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

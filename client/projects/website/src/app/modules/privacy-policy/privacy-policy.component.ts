@@ -1,7 +1,7 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
-  selector: 'jaspero-privacy-policy',
+  selector: 'hg-privacy-policy',
   templateUrl: './privacy-policy.component.html',
   styleUrls: ['./privacy-policy.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

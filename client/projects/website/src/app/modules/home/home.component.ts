@@ -18,7 +18,7 @@ import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.s
 declare const twttr: any;
 
 @Component({
-  selector: 'jaspero-home',
+  selector: 'hg-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

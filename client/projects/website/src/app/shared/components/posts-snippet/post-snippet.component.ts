@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {StateService} from '../../services/state/state.service';
 
 @Component({
-  selector: 'jaspero-post-snippet',
+  selector: 'hg-post-snippet',
   templateUrl: './post-snippet.component.html',
   styleUrls: ['./post-snippet.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

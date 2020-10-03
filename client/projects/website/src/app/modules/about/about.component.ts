@@ -1,7 +1,7 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
-  selector: 'jaspero-about',
+  selector: 'hg-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

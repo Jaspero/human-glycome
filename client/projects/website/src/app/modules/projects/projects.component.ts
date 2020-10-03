@@ -10,7 +10,7 @@ import {Projects} from '../../shared/interfaces/collections/projects.interface';
 import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
 
 @Component({
-  selector: 'jaspero-projects',
+  selector: 'hg-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -8,7 +8,7 @@ import {News} from '../../../../shared/interfaces/collections/news.interface';
 import {JasperoApiService} from '../../../../shared/services/jaspero-api/jaspero-api.service';
 
 @Component({
-  selector: 'jaspero-news',
+  selector: 'hg-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

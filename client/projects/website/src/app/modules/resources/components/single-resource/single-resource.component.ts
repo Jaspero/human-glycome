@@ -3,7 +3,7 @@ import {Resources} from '../../../../shared/interfaces/collections/resources.int
 import {StateService} from '../../../../shared/services/state/state.service';
 
 @Component({
-  selector: 'jaspero-single-resource',
+  selector: 'hg-single-resource',
   templateUrl: './single-resource.component.html',
   styleUrls: ['./single-resource.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

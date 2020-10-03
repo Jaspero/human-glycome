@@ -14,7 +14,7 @@ import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.s
 import {RxPipesService} from '../../shared/services/rx-pipes/rx-pipes.service';
 
 @Component({
-  selector: 'jaspero-members',
+  selector: 'hg-members',
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
