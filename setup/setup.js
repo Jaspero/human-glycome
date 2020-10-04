@@ -575,7 +575,7 @@ const MODULES = [
       instance: {
         segments: [
           {
-            fields: ['/id', '/name', '/url', 'content']
+            fields: ['/id', '/name', '/url', '/content']
           }
         ]
       },
@@ -637,11 +637,11 @@ const MODULES = [
     },
     layout: {
       order: 0,
-      editTitleKey: 'name',
+      editTitleKey: 'shortName',
       icon: 'supervised_user_circle',
       filterModule: {},
       sort: {
-        active: 'name',
+        active: 'shortName',
         direction: 'desc'
       },
       instance: {
@@ -669,10 +669,6 @@ const MODULES = [
             key: '/coordinatingInstitution',
             label: 'Coordinating Institution'
           },
-          {
-            key: '/category',
-            label: 'Category'
-          }
         ]
       }
     },
@@ -715,11 +711,26 @@ const MODULES = [
           configuration: {
             multiple: false,
             dataSet: [
-              '1) Diversity of the human glycome',
-              '2) Inter-individual variability of the human body fluid glycome',
-              '3) Inter-individual variability of the human tissue glycome',
-              '4) Functional relevance and the regulation of the human glycome',
-              '5) Analytical methods and standards for glycoscience',
+              {
+                value: '1) Diversity of the human glycome',
+                label: '1) Diversity of the human glycome',
+              },
+              {
+                value: '2) Inter-individual variability of the human body fluid glycome',
+                label: '2) Inter-individual variability of the human body fluid glycome'
+              },
+              {
+                value: '3) Inter-individual variability of the human tissue glycome',
+                label: '3) Inter-individual variability of the human tissue glycome',
+              },
+              {
+                value: '4) Functional relevance and the regulation of the human glycome',
+                label: '4) Functional relevance and the regulation of the human glycome',
+              },
+              {
+                value: '5) Analytical methods and standards for glycoscience',
+                label: '5) Analytical methods and standards for glycoscience',
+              },
             ]
           }
         }
@@ -901,6 +912,9 @@ const MODULES = [
         id: {
           type: 'string'
         },
+        title: {
+          type: 'string'
+        },
         fullName: {
           type: 'string'
         },
@@ -918,6 +932,9 @@ const MODULES = [
     definitions: {
       id: {
         label: 'Id'
+      },
+      title: {
+        label: 'Title'
       },
       fullName: {
         label: 'Full Name'
@@ -992,6 +1009,9 @@ const MODULES = [
         },
         gallery: {
           type: 'array'
+        },
+        sendMail: {
+          type: 'boolean'
         }
       }
     },
@@ -1006,10 +1026,16 @@ const MODULES = [
         label: 'Url'
       },
       description: {
-        label: 'Description'
+        label: 'Description',
+        component: {
+          type: 'tinymce'
+        }
       },
       shortDescription: {
-        label: 'Short Description'
+        label: 'Short Description',
+        component: {
+          type: 'tinymce'
+        }
       },
       featuredImage: {
         label: 'Featured Image'
@@ -1029,6 +1055,9 @@ const MODULES = [
           },
           type: 'gallery'
         }
+      },
+      sendMail: {
+        label: 'Send Mail'
       }
     }
   },
