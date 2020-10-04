@@ -6,8 +6,8 @@
   "hosting": [
     {
       "target": "cms",
-      "public": "client/dist/cms",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "public": "public/cms",
+      "ignore": ["firebase.json", "**/.*", "**/nod  e_modules/**"],
       "rewrites": [
         {
           "source": "**",
