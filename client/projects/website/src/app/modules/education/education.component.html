@@ -10,16 +10,16 @@
   <div class="grid">
     <div class="col-6 col-m-8 col-s-10 col-xs-12">
 
-      <div class="read-format" *ngFor="let edu of education$ | async">
+      <div class="read-format" *ngFor="let edu of education">
         <h4>{{edu.title}}</h4>
         <p><small>{{edu.createdAt | date:'mediumDate'}}</small></p>
         <p>{{edu.shortDescription}}</p>
-        <p><a [routerLink]="edu._id">Read more</a></p>
+        <p><a [routerLink]="edu.id">Read more</a></p>
         <hr>
       </div>
 
       <div class="ta-center">
-        <button class="btn" (click)="loadMore()">
+        <button class="btn" (click)="loadMore$.next(true)" [disabled]="loadMoreDisable$ | async">
           Load more
         </button>
       </div>

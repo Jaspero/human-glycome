@@ -9,6 +9,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {LoadClickModule} from '@jaspero/ng-helpers';
 
 @NgModule({
   imports: [
@@ -21,6 +22,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCheckboxModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+
+    LoadClickModule,
 
     RouterModule.forChild([
       {

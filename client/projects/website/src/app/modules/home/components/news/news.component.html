@@ -1,6 +1,6 @@
 <h3 class="m-b-m"><span class="title-lt">News</span></h3>
 
-<article class="bg-lt-primary m-b-m p-a-m" *ngFor="let item of news$ | async; jpTrackByField">
+<article class="bg-lt-primary m-b-m p-a-m" *ngFor="let item of news; jpTrackByField">
   <p><small class="ff-secondary">{{item.createdAt | date:'mediumDate'}}</small></p>
   <a [routerLink]="['/news', item.url]">
     <h5 class="m-b-s">{{item.title}}</h5>
@@ -15,7 +15,7 @@
 </article>
 
 <div class="ta-center">
-  <button class="btn" [class.loading]="loading$ | async" [disabled]="cantLoadMore$ | async" (click)="loadMore()">
+  <button class="btn" [class.loading]="loading$ | async" [disabled]="cantLoadMore$ | async" (click)="loadMore$.next(true)">
     Load More
   </button>
 </div>

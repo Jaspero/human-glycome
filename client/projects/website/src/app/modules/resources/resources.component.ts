@@ -1,7 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {finalize, map} from 'rxjs/operators';
-import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
+import {FirestoreCollection} from '../../shared/enums/firestore-collection.enum';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 interface StrippedResource {
   name: string;
@@ -15,21 +16,22 @@ interface StrippedResource {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResourcesComponent implements OnInit {
-  constructor(private _jasperoApi: JasperoApiService) {}
+  constructor(private afs: AngularFirestore) {}
 
   loading$ = new BehaviorSubject(true);
   resources$: Observable<StrippedResource[]>;
 
-  ngOnInit() {
-    this.resources$ = this._jasperoApi
-      .get<StrippedResource>('resources', {
-        projection: {
-          name: 1,
-          url: 1
-        }
-      })
+  ngOnInit(): void {
+    this.resources$ = this.afs
+      .collection(FirestoreCollection.Resources)
+      .snapshotChanges()
       .pipe(
-        map(res => res.data),
+        map(actions =>
+          actions.map(action => ({
+            id: action.payload.doc.id,
+            ...(action.payload.doc.data() as any)
+          }))
+        ),
         finalize(() => {
           this.loading$.next(false);
         })

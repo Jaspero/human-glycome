@@ -9,11 +9,13 @@ import {
   ViewChild
 } from '@angular/core';
 import {RxDestroy} from '@jaspero/ng-helpers';
-import {forkJoin} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {finalize, map} from 'rxjs/operators';
 import {BROWSER_CONFIG} from '../../shared/consts/browser-config.const';
-import {TIME_PERIODS} from '../../shared/consts/time-periods.const';
-import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
+import {FirestoreCollection} from '../../shared/enums/firestore-collection.enum';
+import {FullMembers} from '../../shared/interfaces/collections/full-members.interface';
+import {AssociateMembers} from '../../shared/interfaces/collections/associate-members.interface';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 declare const twttr: any;
 
@@ -26,8 +28,8 @@ declare const twttr: any;
 export class HomeComponent extends RxDestroy
   implements AfterViewInit, OnInit, OnDestroy {
   constructor(
-    private _jasperoApi: JasperoApiService,
-    private _cdr: ChangeDetectorRef
+    private afs: AngularFirestore,
+    private cdr: ChangeDetectorRef
   ) {
     super();
   }
@@ -38,67 +40,46 @@ export class HomeComponent extends RxDestroy
   iterations: Array<{
     title: string;
     items: Array<{name: string; link: string}>;
-  }> = [
-    // {
-    //   title: 'Supporting Companies',
-    //   items: [
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''},
-    //     {name: 'Lorem', link: ''}
-    //   ]
-    // }
-  ];
+  }> = [];
   currentIterationIndex = null;
   iterationTimer: any;
+  fullMem$: Observable<FullMembers[]>;
+  assMem$: Observable<AssociateMembers[]>;
+  showFullMembers = true;
 
   ngOnInit() {
     if (BROWSER_CONFIG.isBrowser) {
-      forkJoin(
-        this._jasperoApi.paginated('full-members', {
-          size: 5,
-          sort: {fullName: 1}
-        }),
-        this._jasperoApi.paginated('associate-members', {
-          size: 5,
-          sort: {name: 1}
+      this.fullMem$ = this.afs
+        .collection(FirestoreCollection.FullMembers, ref => {
+          return ref.limit(5);
         })
-      )
-        .pipe(takeUntil(this.destroyed$))
-        .subscribe(res => {
-          this.iterations.push({
-            title: 'Full Members',
-            items: res[0].data.results.map(item => {
-              item.name = `${item.title} ${item.fullName}`;
-              return item;
-            })
-          });
+        .snapshotChanges()
+        .pipe(
+          map(actions =>
+            actions.map(action => ({
+              id: action.payload.doc.id,
+              ...(action.payload.doc.data() as any)
+            }))
+          ),
+        );
 
-          this.iterations.push({
-            title: 'Associate Members',
-            items: res[1].data.results
-          });
+      this.assMem$ = this.afs
+        .collection(FirestoreCollection.AssMembers)
+        .snapshotChanges()
+        .pipe(
+          map(actions => {
+            return actions.map(action => ({
+              id: action.payload.doc.id,
+              ...(action.payload.doc.data() as any)
+            }))
+          }),
+        );
 
-          if (this.iterations.length > 1) {
-            this.iterationTimer = setInterval(() => {
-              this.currentIterationIndex =
-                this.currentIterationIndex >= this.iterations.length - 1
-                  ? 0
-                  : this.currentIterationIndex + 1;
+      setInterval(() => {
+        this.showFullMembers = !this.showFullMembers
+      }, 60000);
 
-              this._cdr.detectChanges();
-            }, TIME_PERIODS.minute);
-          }
 
-          this.currentIterationIndex = 0;
-          this._cdr.detectChanges();
-        });
     }
   }
 

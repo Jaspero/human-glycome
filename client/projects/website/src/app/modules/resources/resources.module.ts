@@ -8,17 +8,18 @@ import {SharedModule} from '../../shared/shared.module';
 import {SingleResourceComponent} from './components/single-resource/single-resource.component';
 import {ResourcesComponent} from './resources.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ResourcesResolver} from './resolver/resources.resolver';
 
 export function guardQuery(route) {
   return {url: route.params.url};
 }
 
-export function resourceMeta([state]: [StateService]) {
+/*export function resourceMeta([state]: [StateService]) {
   return {
     title: state.currentItem.meta.title,
     description: state.currentItem.meta.description
   };
-}
+}*/
 
 @NgModule({
   imports: [
@@ -43,22 +44,20 @@ export function resourceMeta([state]: [StateService]) {
       {
         path: ':url',
         component: SingleResourceComponent,
-        canActivate: [ItemGuard],
         data: {
-          itemGuard: {
-            collection: 'resources',
-            cache: 'url',
-            query: guardQuery
-          },
+/*
           meta: resourceMeta,
+*/
           metaDeps: [StateService]
         },
         resolve: {
-          meta: MetaResolver
+          resources: ResourcesResolver,
+          /*meta: MetaResolver*/
         }
       }
     ])
   ],
-  declarations: [ResourcesComponent, SingleResourceComponent]
+  declarations: [ResourcesComponent, SingleResourceComponent],
+  providers: [ResourcesResolver]
 })
 export class ResourcesModule {}

@@ -20,7 +20,7 @@
         <p>Here you will find and alphabetical list of current full members and associate members of Human Glycome Project. If you would like to participate in the project or pledge the resources, apply for the membership.</p>
         <h5>Full Members</h5>
         <ul>
-          <li *ngFor="let member of fullMembers">
+          <li *ngFor="let member of fullMembers$ | async ">
             <a [href]="member.link" target="_blank" rel="noopener">
               {{member.title}}
               {{member.fullName}}
@@ -31,7 +31,7 @@
 
         <h5>Associate Members</h5>
         <ul>
-          <li *ngFor="let member of associateMembers">
+          <li *ngFor="let member of associateMembers$ | async">
             <a [href]="member.link" target="_blank" rel="noopener">{{member.name}}</a>
           </li>
         </ul>
@@ -40,7 +40,7 @@
 
         <hr>
 
-        <form *ngIf="form" class="bg-lt-primary p-x-m p-t-s p-b-m" (submit)="send()" [formGroup]="form">
+        <form *ngIf="form" class="bg-lt-primary p-x-m p-t-s p-b-m"  [formGroup]="form">
           <h5>Mailing List</h5>
           <p>Researchers, journalists, educators and other individuals interested in following and  sharing the latest scientific advances and news related to Human Glycome Project can sign up for our mailing list.</p>
 
@@ -57,7 +57,7 @@
             <small>I have read and agree to The Human Glycome Project <a class="link" routerLink="/privacy-policy">Privacy Policy</a>. I give my consent to The Human Glycome Project to store my email and periodically send me news.</small>
           </mat-checkbox>
           <div class="ta-center p-y-m">
-            <button class="btn" [class.loading]="sentLoading$ | async" [disabled]="form.invalid">Send</button>
+            <button class="btn" [class.loading]="sentLoading$ | async" [jpLoadClick]="send()" [disabled]="form.invalid">Send</button>
           </div>
         </form>
 

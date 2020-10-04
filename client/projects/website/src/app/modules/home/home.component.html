@@ -6,17 +6,24 @@
       <cite>— US National Academies, 2012</cite>
       <br>
       <p class="m-b-m">The Human Glycome Project addresses this major societal challenge.</p>
-      <ng-container *ngIf="currentIterationIndex !== null">
+      <ng-container>
         <h5 class="m-b-m c-dt-primary">
         <a class="title-dt" [routerLink]="['/members']">
-          {{iterations[currentIterationIndex].title}}
+          {{this.showFullMembers ? 'Full Members' : 'Associate Members'}}
         </a>
         </h5>
-        <ul class="support-list m-b-m">
-          <li *ngFor="let item of iterations[currentIterationIndex].items">
-            <a class="link" [href]="item.link" target="_blank" rel="noopener">{{item.name}}</a>
+        <ul class="support-list m-b-m" *ngIf="showFullMembers; else assMembers">
+          <li *ngFor="let item of fullMem$ | async">
+            <a class="link" [href]="item.link" target="_blank" rel="noopener">{{item.fullName}}</a>
           </li>
         </ul>
+        <ng-template #assMembers>
+          <ul class="support-list m-b-m">
+            <li *ngFor="let item of assMem$ | async">
+              <a class="link" [href]="item.link" target="_blank" rel="noopener">{{item.name}}</a>
+            </li>
+          </ul>
+        </ng-template>
       </ng-container>
     </section>
   </div>

@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
-import {filter, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
+import {map, scan, startWith, switchMap, take} from 'rxjs/operators';
 import {ImageSizeModification} from '../../../../shared/classes/image-modifications/image-size-modification.class';
-import {TIME_PERIODS} from '../../../../shared/consts/time-periods.const';
-import {ObjectIdHelper} from '../../../../shared/helpers/object-id.helper';
 import {News} from '../../../../shared/interfaces/collections/news.interface';
-import {JasperoApiService} from '../../../../shared/services/jaspero-api/jaspero-api.service';
+import {FirestoreCollection} from '../../../../shared/enums/firestore-collection.enum';
+import {AngularFirestore, QueryDocumentSnapshot} from '@angular/fire/firestore';
+import {Education} from '../../../../shared/interfaces/education/education-interface';
 
 @Component({
   selector: 'hg-news',
@@ -14,59 +14,76 @@ import {JasperoApiService} from '../../../../shared/services/jaspero-api/jaspero
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsComponent implements OnInit {
-  constructor(private _jasperoApi: JasperoApiService) {}
+  constructor(private afs: AngularFirestore, private cdr: ChangeDetectorRef) {}
 
   loading$ = new BehaviorSubject(false);
-  currentPage$ = new BehaviorSubject(1);
-  totalPages$ = new BehaviorSubject(1);
   news$: Observable<News[]>;
   cantLoadMore$: Observable<boolean>;
-
-  itemsAccumulator = [];
+  loadMore$ = new Subject();
+  pageSize = 5;
+  cursor: QueryDocumentSnapshot<Education>;
+  news;
+  hasMore$ = new BehaviorSubject(true);
   imageModifications = [new ImageSizeModification(480)];
+  loadMoreDisable$: Observable<boolean>;
+
 
   ngOnInit() {
-    this.cantLoadMore$ = combineLatest(
-      this.totalPages$,
-      this.currentPage$
-    ).pipe(
-      map(([total, current]) => {
-        return total <= current;
-      })
+
+
+    this.loadMoreDisable$ = combineLatest([this.hasMore$, this.loading$]).pipe(
+      map(([hasMore, loading]) => loading || !hasMore)
     );
 
-    this.news$ = this.currentPage$.pipe(
-      withLatestFrom(this.totalPages$),
-      filter(([current, total]) => total >= current),
-      tap(() => this.loading$.next(true)),
-      switchMap(([current]) =>
-        this._jasperoApi.paginated(
-          'news',
-          {
-            current,
-            size: 5
-          },
-          TIME_PERIODS.tenMinutes
-        )
-      ),
-      map(results => {
-        this.totalPages$.next(results.data.total);
-        this.itemsAccumulator = [
-          ...this.itemsAccumulator,
-          ...results.data.results.map(item => ({
-            ...item,
-            createdAt: ObjectIdHelper.dateFromId(item._id)
-          }))
-        ];
+    this.loadMore$
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.loading$.next(true);
 
-        return this.itemsAccumulator;
-      }),
-      tap(() => this.loading$.next(false))
-    );
-  }
+          return this.afs
+            .collection<Education>(
+              FirestoreCollection.News,
+              ref => {
+                let final = ref
+                  .limit(this.pageSize);
 
-  loadMore() {
-    const current = this.currentPage$.getValue();
-    this.currentPage$.next(!current ? 2 : current + 1);
+                if (this.cursor) {
+                  final = final.startAfter(this.cursor);
+                }
+                return final;
+              }
+            )
+            .get()
+            .pipe(
+              take(1),
+              map((actions: any) => {
+                this.loading$.next(false);
+
+                if (actions.docs.length < this.pageSize) {
+                  this.hasMore$.next(false);
+                } else {
+                  this.cursor = actions.docs[
+                  actions.docs.length - 2
+                    ] as QueryDocumentSnapshot<Education>;
+                }
+                return actions.docs.reduce((acc, cur, ind) => {
+                  if (ind < this.pageSize - 1) {
+                    acc.push({
+                      id: cur.id,
+                      ...cur.data()
+                    });
+                  }
+                  return acc;
+                }, []);
+              })
+            );
+        }),
+        scan((acc, curr) => acc.concat(curr), []),
+      )
+      .subscribe(news => {
+        this.news = news;
+        this.cdr.markForCheck();
+      });
   }
 }

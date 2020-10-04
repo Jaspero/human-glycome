@@ -4,6 +4,8 @@ import {Observable} from 'rxjs';
 import {TIME_PERIODS} from '../../../shared/consts/time-periods.const';
 import {ObjectIdHelper} from '../../../shared/helpers/object-id.helper';
 import {JasperoApiService} from '../../../shared/services/jaspero-api/jaspero-api.service';
+import {map} from 'rxjs/operators';
+import {Education} from '../../../shared/interfaces/education/education-interface';
 
 @Component({
   selector: 'hg-education-single-page',
@@ -13,18 +15,19 @@ import {JasperoApiService} from '../../../shared/services/jaspero-api/jaspero-ap
 })
 export class EducationSinglePageComponent implements OnInit {
   constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _jasperoApi: JasperoApiService
+    private activatedRoute: ActivatedRoute,
   ) {}
 
-  singleEducation$: Observable<any>;
+  education: Education;
   createdAt: any;
 
   ngOnInit() {
-    this._activatedRoute.params.subscribe(val => {
-      this.singleEducation$ = this._jasperoApi.getSingle('education', val._id);
-
-      this.createdAt = ObjectIdHelper.dateFromId(val._id);
-    });
+    this.activatedRoute.data
+      .pipe(
+        map(({education}) => education),
+      )
+      .subscribe(item => {
+        this.education = item;
+      });
   }
 }
