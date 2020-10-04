@@ -8,6 +8,8 @@ import {Observable} from 'rxjs';
 import {finalize, map} from 'rxjs/operators';
 import {Projects} from '../../shared/interfaces/collections/projects.interface';
 import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
+import {FirestoreCollection} from '../../shared/enums/firestore-collection.enum';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'hg-projects',
@@ -17,18 +19,23 @@ import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.s
 })
 export class ProjectsComponent implements OnInit {
   constructor(
-    private _jasperoApi: JasperoApiService,
-    private _cdr: ChangeDetectorRef
+    private afs: AngularFirestore,
+    private cdr: ChangeDetectorRef
   ) {}
 
   loading = true;
   categories$: Observable<Array<{category: string; projects: Projects[]}>>;
 
   ngOnInit() {
-    this.categories$ = this._jasperoApi.get<Projects>('projects').pipe(
-      map(res => {
-        return res.data
-          .reduce((acc, cur) => {
+    this.categories$ = this.afs
+      .collection(FirestoreCollection.Projects)
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(action => ({
+            id: action.payload.doc.id,
+            ...(action.payload.doc.data() as any)
+          })).reduce((acc, cur) => {
             const index = acc.findIndex(item => item.category === cur.category);
 
             if (index === -1) {
@@ -42,16 +49,7 @@ export class ProjectsComponent implements OnInit {
 
             return acc;
           }, [])
-          .sort((catOne, catTwo) => {
-            const orderOne = parseInt(catOne.category.split(' ')[0], 10);
-            const orderTwo = parseInt(catTwo.category.split(' ')[0], 10);
-            return orderOne - orderTwo;
-          });
-      }),
-      finalize(() => {
-        this.loading = false;
-        this._cdr.detectChanges();
-      })
-    );
+        )
+      );
   }
 }

@@ -45,7 +45,7 @@ export class HomeComponent extends RxDestroy
   iterationTimer: any;
   fullMem$: Observable<FullMembers[]>;
   assMem$: Observable<AssociateMembers[]>;
-  showFullMembers: boolean;
+  showFullMembers = true;
 
   ngOnInit() {
     if (BROWSER_CONFIG.isBrowser) {

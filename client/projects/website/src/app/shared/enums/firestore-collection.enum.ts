@@ -6,4 +6,5 @@ export enum FirestoreCollection {
   News = 'news',
   Projects = 'projects',
   Resources = 'resources',
+  GlycoDb = 'glyco-databases',
 }

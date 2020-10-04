@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {finalize, map} from 'rxjs/operators';
 import {GlycoDatabases} from '../../shared/interfaces/collections/glyco-databases.interface';
 import {FirestoreCollection} from '../../shared/enums/firestore-collection.enum';
@@ -17,12 +17,11 @@ export class GlycoDatabasesComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
-  loading = true;
   glycoDatabases$: Observable<GlycoDatabases[]>;
 
   ngOnInit(): void {
     this.glycoDatabases$ = this.afs
-      .collection(FirestoreCollection.Resources)
+      .collection(FirestoreCollection.GlycoDb)
       .snapshotChanges()
       .pipe(
         map(actions =>
@@ -30,11 +29,7 @@ export class GlycoDatabasesComponent implements OnInit {
             id: action.payload.doc.id,
             ...(action.payload.doc.data() as any)
           }))
-        ),
-        finalize(() => {
-          this.loading = false;
-          this.cdr.detectChanges();
-        })
+        )
       );
   }
 
