@@ -55,10 +55,7 @@ export class MembersComponent extends RxDestroy implements OnInit {
             id: action.payload.doc.id,
             ...(action.payload.doc.data() as any)
           }))
-        ),
-        finalize(() => {
-          this.loading = false
-        })
+        )
       );
 
     this.associateMembers$ = this.afs
@@ -71,9 +68,6 @@ export class MembersComponent extends RxDestroy implements OnInit {
             ...(action.payload.doc.data() as any)
           }))
         ),
-        finalize(() => {
-          this.loading = false
-        })
       );
 
   }

@@ -46,7 +46,7 @@ export class ProjectsComponent implements OnInit {
             } else {
               acc[index].projects.push(cur);
             }
-
+            this.loading = false;
             return acc;
           }, [])
         )

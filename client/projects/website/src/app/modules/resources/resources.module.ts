@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 
 import {RouterModule} from '@angular/router';
-import {ItemGuard} from '../../shared/guards/item.guard';
 import {MetaResolver} from '../../shared/resolvers/meta.resolver';
 import {StateService} from '../../shared/services/state/state.service';
 import {SharedModule} from '../../shared/shared.module';
