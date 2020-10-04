@@ -33,6 +33,54 @@ const COLLECTIONS = [
               value: '/dashboard'
             },
             {
+              icon: 'business',
+              label: 'Associate Members',
+              type: 'link',
+              value: '/m/associate-members/overview'
+            },
+            {
+              icon: 'contacts',
+              label: 'Contact',
+              type: 'link',
+              value: '/m/contact/overview'
+            },
+            {
+              icon: 'school',
+              label: 'Education',
+              type: 'link',
+              value: '/m/education/overview'
+            },
+            {
+              icon: 'supervisor_account',
+              label: 'Full Members',
+              type: 'link',
+              value: '/m/full-members/overview'
+            },
+            {
+              icon: 'analytics',
+              label: 'Glyco Databases',
+              type: 'link',
+              value: '/m/glyco-databases/overview'
+            },
+            {
+              icon: 'article',
+              label: 'News',
+              type: 'link',
+              value: '/m/news/overview'
+            },
+            {
+              icon: 'business_center',
+              label: 'Projects',
+              type: 'link',
+              value: '/m/projects/overview'
+            },
+            {
+              icon: 'wysiwyg',
+              label: 'Resources',
+              type: 'link',
+              value: '/m/resources/overview'
+            },
+            {
               children: [
                 {
                   icon: 'supervised_user_circle',

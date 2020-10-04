@@ -41,6 +41,16 @@
                 "glob": "**/*",
                 "input": "node_modules/tinymce/skins/content/default",
                 "output": "/skins/content/default"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce/plugins",
+                "output": "/plugins"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce/icons",
+                "output": "/icons"
               }
             ],
             "styles": [
@@ -77,7 +87,8 @@
               "tinymce/plugins/print",
               "tinymce/plugins/code",
               "tinymce/plugins/table",
-              "tinymce/plugins/advlist"
+              "tinymce/plugins/advlist",
+              "tinymce/plugins/pageembed"
             ]
           },
           "configurations": {
