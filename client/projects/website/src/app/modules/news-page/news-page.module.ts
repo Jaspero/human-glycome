@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
 import {MatDialogModule} from '@angular/material/dialog';
-import {RouterModule} from '@angular/router';
-import {ItemGuard} from '../../shared/guards/item.guard';
+import {RouterModule, Routes} from '@angular/router';
 import {MetaResolver} from '../../shared/resolvers/meta.resolver';
 import {StateService} from '../../shared/services/state/state.service';
 import {SharedModule} from '../../shared/shared.module';
-import {guardQuery} from '../resources/resources.module';
 import {NewsPageComponent} from './news-page.component';
+import {NewsResolver} from './resolvler/news.resolver';
 
 export function newsMeta([state]: [StateService]) {
   return {
@@ -15,30 +14,28 @@ export function newsMeta([state]: [StateService]) {
   };
 }
 
+const routes: Routes = [
+  {
+    path: ':url',
+    component: NewsPageComponent,
+    /*data: {
+      meta: newsMeta,
+      metaDeps: [StateService]
+    },*/
+    resolve: {
+      meta: MetaResolver,
+      news: NewsResolver
+    }
+  }
+]
+
 @NgModule({
   imports: [
     SharedModule,
     MatDialogModule,
-    RouterModule.forChild([
-      {
-        path: ':url',
-        component: NewsPageComponent,
-        canActivate: [ItemGuard],
-        data: {
-          itemGuard: {
-            collection: 'news',
-            cache: 'url',
-            query: guardQuery
-          },
-          meta: newsMeta,
-          metaDeps: [StateService]
-        },
-        resolve: {
-          meta: MetaResolver
-        }
-      }
-    ])
+    RouterModule.forChild(routes)
   ],
-  declarations: [NewsPageComponent]
+  declarations: [NewsPageComponent],
+  providers: [NewsResolver]
 })
 export class NewsPageModule {}

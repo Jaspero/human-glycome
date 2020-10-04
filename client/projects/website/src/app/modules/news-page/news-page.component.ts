@@ -1,16 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 
 import {ImageSizeModification} from '../../shared/classes/image-modifications/image-size-modification.class';
-import {ObjectIdHelper} from '../../shared/helpers/object-id.helper';
 import {News} from '../../shared/interfaces/collections/news.interface';
-import {StateService} from '../../shared/services/state/state.service';
 import {MatDialog} from '@angular/material/dialog';
+import {map} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'hg-news-page',
@@ -19,7 +13,7 @@ import {MatDialog} from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsPageComponent implements OnInit {
-  constructor(private _state: StateService, public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private activatedRoute: ActivatedRoute) {}
 
   @ViewChild('galleryDialog', {read: TemplateRef})
   galleryDialogTemplate: TemplateRef<any>;
@@ -30,13 +24,15 @@ export class NewsPageComponent implements OnInit {
   indexNumb: number;
 
   ngOnInit() {
-    this.getInitialData();
+    this.activatedRoute.data
+      .pipe(
+        map(({news}) => news),
+      )
+      .subscribe(item => {
+        this.newsInfo = item;
+      });
   }
 
-  getInitialData() {
-    this.newsInfo = this._state.currentItem;
-    this.newsInfo['createdAt'] = ObjectIdHelper.dateFromId(this.newsInfo._id);
-  }
 
   change(direction) {
     if (direction === 'left') {

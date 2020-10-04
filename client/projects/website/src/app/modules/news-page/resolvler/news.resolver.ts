@@ -15,8 +15,9 @@ export class NewsResolver implements Resolve<News> {
   }
 
   resolve(route: ActivatedRouteSnapshot) {
+    console.log(route);
     return this.afs
-      .doc(FirestoreCollection.News + '/' + route.params.id)
+      .doc(FirestoreCollection.News + '/' + route.params.url)
       .valueChanges()
       .pipe(
         take(1),

@@ -5,7 +5,7 @@ import {ImageSizeModification} from '../../../../shared/classes/image-modificati
 import {News} from '../../../../shared/interfaces/collections/news.interface';
 import {FirestoreCollection} from '../../../../shared/enums/firestore-collection.enum';
 import {AngularFirestore, QueryDocumentSnapshot} from '@angular/fire/firestore';
-import {untilDestroyed} from '@ngneat/until-destroy';
+import {Education} from '../../../../shared/interfaces/education/education-interface';
 
 @Component({
   selector: 'hg-news',
@@ -20,62 +20,70 @@ export class NewsComponent implements OnInit {
   news$: Observable<News[]>;
   cantLoadMore$: Observable<boolean>;
   loadMore$ = new Subject();
-  cursor: QueryDocumentSnapshot<News>;
+  pageSize = 5;
+  cursor: QueryDocumentSnapshot<Education>;
   news;
   hasMore$ = new BehaviorSubject(true);
   imageModifications = [new ImageSizeModification(480)];
+  loadMoreDisable$: Observable<boolean>;
+
 
   ngOnInit() {
-    this.cantLoadMore$ = combineLatest([this.hasMore$, this.loading$])
+
+
+    this.loadMoreDisable$ = combineLatest([this.hasMore$, this.loading$]).pipe(
+      map(([hasMore, loading]) => loading || !hasMore)
+    );
+
+    this.loadMore$
       .pipe(
-        map(([hasMore, loading]) => loading || !hasMore)
-      );
+        startWith({}),
+        switchMap(() => {
+          this.loading$.next(true);
 
-    this.loadMore$.pipe(
-      startWith({}),
-      switchMap(() => {
-        this.loading$.next(true);
+          return this.afs
+            .collection<Education>(
+              FirestoreCollection.News,
+              ref => {
+                let final = ref
+                  .limit(this.pageSize);
 
-        return this.afs
-          .collection(
-            FirestoreCollection.News,
-            ref => {
-              let final;
-              if (this.cursor) {
-                final = final.startAfter(this.cursor);
-              }
-              return final;
-            }
-          )
-          .get()
-          .pipe(
-            take(1),
-            map((actions: any) => {
-              this.loading$.next(false);
-
-              if (actions.docs.length < 5) {
-                this.hasMore$.next(false);
-              } else {
-                this.cursor = actions.docs[
-                actions.docs.length - 2
-                  ] as QueryDocumentSnapshot<News>;
-              }
-              return actions.docs.reduce((acc, cur, ind) => {
-                if (ind < 5 - 1) {
-                  acc.push({
-                    id: cur.id,
-                    ...cur.data()
-                  });
+                if (this.cursor) {
+                  final = final.startAfter(this.cursor);
                 }
-                return acc;
-              }, []);
-            })
-          );
-      }),
-      scan((acc, curr) => acc.concat(curr), []),
-    ).subscribe(news => {
-      this.news = news;
-      this.cdr.markForCheck();
-    });
+                return final;
+              }
+            )
+            .get()
+            .pipe(
+              take(1),
+              map((actions: any) => {
+                this.loading$.next(false);
+
+                if (actions.docs.length < this.pageSize) {
+                  this.hasMore$.next(false);
+                } else {
+                  this.cursor = actions.docs[
+                  actions.docs.length - 2
+                    ] as QueryDocumentSnapshot<Education>;
+                }
+                return actions.docs.reduce((acc, cur, ind) => {
+                  if (ind < this.pageSize - 1) {
+                    acc.push({
+                      id: cur.id,
+                      ...cur.data()
+                    });
+                  }
+                  return acc;
+                }, []);
+              })
+            );
+        }),
+        scan((acc, curr) => acc.concat(curr), []),
+      )
+      .subscribe(news => {
+        this.news = news;
+        this.cdr.markForCheck();
+      });
   }
 }
