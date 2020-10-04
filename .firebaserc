@@ -2,6 +2,9 @@
   "targets": {
     "human-glycome": {
       "hosting": {
+      "website": [
+        "human-glycome"
+       ],
         "cms": [
           "human-glycome-cms"
         ]
