@@ -31,7 +31,7 @@ const routes: Routes = [
     }
   },
   {
-    path: ':_id',
+    path: ':id',
     component: EducationSinglePageComponent,
     /*        data: {
               meta: educationMeta
@@ -49,6 +49,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SanitizeModule
   ],
-  declarations: [EducationComponent, EducationSinglePageComponent]
+  declarations: [EducationComponent, EducationSinglePageComponent],
+  providers: [EducationResolver]
 })
 export class EducationModule {}

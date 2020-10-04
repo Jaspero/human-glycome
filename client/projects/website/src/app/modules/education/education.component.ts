@@ -1,8 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable, queue, Subject} from 'rxjs';
+import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
 import {map, scan, startWith, switchMap, take} from 'rxjs/operators';
 import {Education} from '../../shared/interfaces/education/education-interface';
-import {untilDestroyed} from '@ngneat/until-destroy';
 import {FirestoreCollection} from '../../shared/enums/firestore-collection.enum';
 import {AngularFirestore, QueryDocumentSnapshot} from '@angular/fire/firestore';
 

@@ -23,7 +23,6 @@ export class SingleResourceComponent implements OnInit {
         map(({resources}) => resources),
       )
       .subscribe(item => {
-        console.log(item);
         this.resource = item;
         this.cdr.markForCheck();
       });

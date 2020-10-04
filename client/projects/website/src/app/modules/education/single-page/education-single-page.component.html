@@ -1,8 +1,8 @@
-<div *ngIf="singleEducation$ | async as single">
+<div>
   <section class="bg-img p-y-m">
     <div class="grid">
       <div class="col-6 col-m-8 col-s-10 col-xs-12">
-        <h1 class="c-dt-primary"><span class="title-dt">{{single.data.title}}</span></h1>
+        <h1 class="c-dt-primary"><span class="title-dt">{{education.title}}</span></h1>
       </div>
     </div>
   </section>
@@ -16,7 +16,7 @@
       <div class="col-6 col-m-8 col-s-10 col-xs-12">
         <div class="read-format">
           <p>{{createdAt | date:'mediumDate'}}</p>
-          <p class="m-b-s read-format" *ngIf="single.data.content" [innerHtml]="single.data.content | jpSanitize:'html'"></p>
+          <p class="m-b-s read-format" *ngIf="education.content" [innerHtml]="education.content | jpSanitize:'html'"></p>
         </div>
       </div>
     </div>
