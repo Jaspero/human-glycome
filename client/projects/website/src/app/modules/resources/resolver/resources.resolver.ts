@@ -16,7 +16,7 @@ export class ResourcesResolver implements Resolve<Resources> {
 
   resolve(route: ActivatedRouteSnapshot) {
     return this.afs
-      .doc(FirestoreCollection.Resources + '/' + route.params.id)
+      .doc(FirestoreCollection.Resources + '/' + route.params.url)
       .valueChanges()
       .pipe(
         take(1),
