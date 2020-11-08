@@ -1,9 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
-import {Observable} from 'rxjs';
-import {TIME_PERIODS} from '../../../shared/consts/time-periods.const';
-import {ObjectIdHelper} from '../../../shared/helpers/object-id.helper';
-import {JasperoApiService} from '../../../shared/services/jaspero-api/jaspero-api.service';
+import {ActivatedRoute} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {Education} from '../../../shared/interfaces/education/education-interface';
 

@@ -27,7 +27,7 @@ const routes: Routes = [
       news: NewsResolver
     }
   }
-]
+];
 
 @NgModule({
   imports: [

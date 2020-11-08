@@ -1,19 +1,13 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
-} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RxDestroy} from '@jaspero/ng-helpers';
-import {BehaviorSubject, forkJoin, from, Observable} from 'rxjs';
-import {finalize, map, takeUntil, tap} from 'rxjs/operators';
+import {BehaviorSubject, from, Observable} from 'rxjs';
+import {finalize, map} from 'rxjs/operators';
+import {FirestoreCollection} from '../../shared/enums/firestore-collection.enum';
 import {AssociateMembers} from '../../shared/interfaces/collections/associate-members.interface';
 import {FullMembers} from '../../shared/interfaces/collections/full-members.interface';
-import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
 import {RxPipesService} from '../../shared/services/rx-pipes/rx-pipes.service';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {FirestoreCollection} from '../../shared/enums/firestore-collection.enum';
 
 @Component({
   selector: 'hg-members',

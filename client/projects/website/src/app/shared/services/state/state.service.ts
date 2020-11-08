@@ -5,12 +5,12 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class StateService {
-  constructor(private _router: Router) {}
+  constructor(private router: Router) {}
 
   /**
    * Holds any previously loaded items
    */
-  protected itemCache: {[key: string]: Object} = {};
+  protected itemCache: {[key: string]: any} = {};
 
   /**
    * Holds the value of anything that
@@ -29,7 +29,7 @@ export class StateService {
    * current route
    */
   setRouteData(data: any) {
-    const url = this._router.routerState.snapshot.url;
+    const url = this.router.routerState.snapshot.url;
 
     this.routerData[url] = data;
   }
@@ -46,7 +46,7 @@ export class StateService {
       pageSize: 10
     }
   ) {
-    const url = this._router.routerState.snapshot.url;
+    const url = this.router.routerState.snapshot.url;
 
     if (this.routerData[url]) {
       return this.routerData[url];

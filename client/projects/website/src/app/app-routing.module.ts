@@ -71,8 +71,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      // enableTracing: !environment.production,
-      enableTracing: false,
       scrollPositionRestoration: 'top'
     })
   ],

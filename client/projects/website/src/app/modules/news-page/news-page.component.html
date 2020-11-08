@@ -12,14 +12,14 @@
 
       <div class="read-format">
 
-        <img *ngIf="newsInfo.featuredImage" alt="featured" [jasperoLibraryImage]="newsInfo.featuredImage">
+        <img *ngIf="newsInfo.featuredImage" alt="featured" [src]="newsInfo.featuredImage">
         <p><small class="ff-secondary">{{newsInfo.createdAt | date:'mediumDate'}}</small></p>
         <p class="m-b-s read-format" *ngIf="newsInfo.description" [innerHtml]="newsInfo.description | jpSanitize:'html'"></p>
         <ng-container *ngIf="newsInfo.gallery">
           <div class="grid grid-small-gutter">
             <div class="col-6 col-s-10 col-xs-12" *ngFor="let image of newsInfo.gallery" (click)="openDialog(newsInfo.gallery.indexOf(image))">
               <div class="aspect-ratio gallery" data-ratio="4:3">
-                <img [modifications]="imageModifications" [jasperoLibraryImage]="image">
+                <img [src]="image">
               </div>
             </div>
           </div>
@@ -33,7 +33,7 @@
 <ng-template #galleryDialog>
   <div class="modal">
     <button (click)="change('left')"><img src="assets/images/chevron-left.svg" alt="Previous image"></button>
-    <img [jasperoLibraryImage]="selectedImage">
+    <img [src]="selectedImage">
     <button (click)="change('right')"><img src="assets/images/chevron-right.svg" alt="Next image"></button>
   </div>
 </ng-template>

@@ -1,10 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-
-import {ImageSizeModification} from '../../shared/classes/image-modifications/image-size-modification.class';
-import {News} from '../../shared/interfaces/collections/news.interface';
 import {MatDialog} from '@angular/material/dialog';
-import {map} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {News} from '../../shared/interfaces/collections/news.interface';
 
 @Component({
   selector: 'hg-news-page',
@@ -18,7 +16,6 @@ export class NewsPageComponent implements OnInit {
   @ViewChild('galleryDialog', {read: TemplateRef})
   galleryDialogTemplate: TemplateRef<any>;
 
-  imageModifications = [new ImageSizeModification(480)];
   newsInfo: News;
   selectedImage: string;
   indexNumb: number;

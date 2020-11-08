@@ -17,7 +17,7 @@ export interface ShowNotificationConfig {
   providedIn: 'root'
 })
 export class RxPipesService {
-  constructor(private _notificationsService: NotificationsService) {}
+  constructor(private notificationsService: NotificationsService) {}
 
   /**
    * Shows a notification on next or throws
@@ -44,7 +44,7 @@ export class RxPipesService {
       return source$.pipe(
         tap(() => {
           if (!config.showOnlyError) {
-            this._notificationsService[config.type](
+            this.notificationsService[config.type](
               config.title,
               config.content,
               config.override
@@ -52,7 +52,7 @@ export class RxPipesService {
           }
         }),
         catchError(err => {
-          this._notificationsService.error(
+          this.notificationsService.error(
             config.errorTitle,
             config.errorContent
           );

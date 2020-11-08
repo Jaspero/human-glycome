@@ -1,4 +1,4 @@
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import {APP_INITIALIZER, Injector, NgModule, PLATFORM_ID} from '@angular/core';
 import {
   BrowserModule,
@@ -14,7 +14,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NewsPageModule} from './modules/news-page/news-page.module';
 import {appInit} from './shared/helpers/app-init';
-import {ApiInterceptorService} from './shared/services/api-interceptor/api-interceptor.service';
 import {SharedModule} from './shared/shared.module';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {ENV_CONFIG} from '../../../../env-config';
@@ -59,11 +58,6 @@ export function init(injector: Injector) {
     TrackByFieldModule.defaultKey('_id')
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useExisting: ApiInterceptorService,
-      multi: true
-    },
     {
       provide: APP_INITIALIZER,
       useFactory: init,

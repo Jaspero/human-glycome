@@ -5,9 +5,8 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import {Observable} from 'rxjs';
-import {finalize, map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {Projects} from '../../shared/interfaces/collections/projects.interface';
-import {JasperoApiService} from '../../shared/services/jaspero-api/jaspero-api.service';
 import {FirestoreCollection} from '../../shared/enums/firestore-collection.enum';
 import {AngularFirestore} from '@angular/fire/firestore';
 

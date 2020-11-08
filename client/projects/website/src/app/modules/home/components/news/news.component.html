@@ -6,7 +6,7 @@
     <h5 class="m-b-s">{{item.title}}</h5>
   </a>
   <p class="m-b-s read-format" *ngIf="item.shortDescription" [innerHtml]="item.shortDescription | jpSanitize:'html'"></p>
-  <img *ngIf="item.featuredImage" alt="featured" [jasperoLibraryImage]="item.featuredImage" [modifications]="imageModifications">
+  <img *ngIf="item.featuredImage" alt="featured" [src]="item.featuredImage">
   <div class="flex jc-center m-t-s">
     <button class="btn" [routerLink]="['/news', item.url]">
       Read more...
@@ -15,7 +15,7 @@
 </article>
 
 <div class="ta-center">
-  <button class="btn" [class.loading]="loading$ | async" [disabled]="cantLoadMore$ | async" (click)="loadMore$.next(true)">
+  <button class="btn" [class.loading]="loading$ | async" [disabled]="hasMore$ | async" (click)="loadMore$.next(true)">
     Load More
   </button>
 </div>

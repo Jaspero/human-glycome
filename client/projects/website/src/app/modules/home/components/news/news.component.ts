@@ -1,10 +1,9 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
-import {map, scan, startWith, switchMap, take} from 'rxjs/operators';
-import {ImageSizeModification} from '../../../../shared/classes/image-modifications/image-size-modification.class';
-import {News} from '../../../../shared/interfaces/collections/news.interface';
-import {FirestoreCollection} from '../../../../shared/enums/firestore-collection.enum';
 import {AngularFirestore, QueryDocumentSnapshot} from '@angular/fire/firestore';
+import {BehaviorSubject, Subject} from 'rxjs';
+import {map, scan, startWith, switchMap, take} from 'rxjs/operators';
+import {FirestoreCollection} from '../../../../shared/enums/firestore-collection.enum';
+import {News} from '../../../../shared/interfaces/collections/news.interface';
 import {Education} from '../../../../shared/interfaces/education/education-interface';
 
 @Component({
@@ -17,24 +16,14 @@ export class NewsComponent implements OnInit {
   constructor(private afs: AngularFirestore, private cdr: ChangeDetectorRef) {}
 
   loading$ = new BehaviorSubject(false);
-  news$: Observable<News[]>;
-  cantLoadMore$: Observable<boolean>;
   loadMore$ = new Subject();
   pageSize = 5;
   cursor: QueryDocumentSnapshot<Education>;
-  news;
+  news: News[];
   hasMore$ = new BehaviorSubject(true);
-  imageModifications = [new ImageSizeModification(480)];
-  loadMoreDisable$: Observable<boolean>;
 
 
   ngOnInit() {
-
-
-    this.loadMoreDisable$ = combineLatest([this.hasMore$, this.loading$]).pipe(
-      map(([hasMore, loading]) => loading || !hasMore)
-    );
-
     this.loadMore$
       .pipe(
         startWith({}),
@@ -46,7 +35,8 @@ export class NewsComponent implements OnInit {
               FirestoreCollection.News,
               ref => {
                 let final = ref
-                  .limit(this.pageSize);
+                  .limit(this.pageSize)
+                  .orderBy('createdOn', 'asc');
 
                 if (this.cursor) {
                   final = final.startAfter(this.cursor);
@@ -60,13 +50,9 @@ export class NewsComponent implements OnInit {
               map((actions: any) => {
                 this.loading$.next(false);
 
-                if (actions.docs.length < this.pageSize) {
-                  this.hasMore$.next(false);
-                } else {
-                  this.cursor = actions.docs[
-                  actions.docs.length - 2
-                    ] as QueryDocumentSnapshot<Education>;
-                }
+                this.hasMore$.next(actions.docs.length !== this.pageSize);
+                this.cursor = actions.docs[actions.docs.length - 2] as QueryDocumentSnapshot<Education>;
+
                 return actions.docs.reduce((acc, cur, ind) => {
                   if (ind < this.pageSize - 1) {
                     acc.push({

@@ -19,6 +19,10 @@ const COLLECTIONS = [
           {
             email: 'sven.djanis@gmail.com',
             role: 'admin'
+          },
+          {
+            email: 'filip.lauc93@gmail.com',
+            role: 'admin'
           }
         ]
       },
@@ -959,17 +963,16 @@ const MODULES = [
     },
     layout: {
       order: 0,
-      editTitleKey: 'name',
+      editTitleKey: 'title',
       icon: 'supervised_user_circle',
-      filterModule: {},
       sort: {
-        active: 'title',
+        active: 'createdOn',
         direction: 'desc'
       },
       instance: {
         segments: [
           {
-            fields: ['/id', '/title', '/url', '/description', '/featuredImage', '/shortDescription', '/gallery', '/sendMail']
+            fields: ['/createdOn', '/id', '/title', '/url', '/description', '/featuredImage', '/shortDescription', '/gallery', '/sendMail']
           }
         ]
       },
@@ -989,6 +992,7 @@ const MODULES = [
     },
     schema: {
       properties: {
+        createdOn: { type: 'number'},
         id: {
           type: 'string'
         },
@@ -1016,6 +1020,16 @@ const MODULES = [
       }
     },
     definitions: {
+      createdOn: {
+        label: 'Created On',
+        formatOnLoad: '(value) => value || Date.now()',
+        component: {
+          type: 'date',
+          configuration: {
+            format: 'number'
+          }
+        }
+      },
       id: {
         label: 'Id'
       },
@@ -1038,7 +1052,10 @@ const MODULES = [
         }
       },
       featuredImage: {
-        label: 'Featured Image'
+        label: 'Featured Image',
+        component: {
+          type: 'image'
+        }
       },
       gallery: {
         label: 'Gallery',

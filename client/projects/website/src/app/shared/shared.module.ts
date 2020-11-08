@@ -9,7 +9,6 @@ import {
   StopPropagationModule
 } from '@jaspero/ng-helpers';
 import {PostSnippetComponent} from './components/posts-snippet/post-snippet.component';
-import {LibraryImageDirective} from './directives/library-image/library-image.directive';
 
 const MODULES = [
   CommonModule,
@@ -25,7 +24,7 @@ const MODULES = [
 
 const COMPONENTS = [PostSnippetComponent];
 
-const DIRECTIVES = [LibraryImageDirective];
+const DIRECTIVES = [];
 
 const PIPES = [];
 

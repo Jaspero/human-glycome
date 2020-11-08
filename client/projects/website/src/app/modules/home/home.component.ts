@@ -28,8 +28,7 @@ declare const twttr: any;
 export class HomeComponent extends RxDestroy
   implements AfterViewInit, OnInit, OnDestroy {
   constructor(
-    private afs: AngularFirestore,
-    private cdr: ChangeDetectorRef
+    private afs: AngularFirestore
   ) {
     super();
   }
