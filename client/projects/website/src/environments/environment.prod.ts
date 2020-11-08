@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: '',
+  initAnalytics: false,
+  googleAnalyticsKey: 'INSERT_KEY',
+  loadServiceWorker: true,
 };

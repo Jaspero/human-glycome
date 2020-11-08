@@ -4,6 +4,9 @@
       "hosting": {
         "cms": [
           "human-glycome-cms"
+        ],
+        "website": [
+          "human-glycome"
         ]
       }
     }

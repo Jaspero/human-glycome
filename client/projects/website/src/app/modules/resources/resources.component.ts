@@ -18,7 +18,7 @@ interface StrippedResource {
 export class ResourcesComponent implements OnInit {
   constructor(private afs: AngularFirestore) {}
 
-  loading = true;
+  loading$ = new BehaviorSubject(false);
   resources$: Observable<StrippedResource[]>;
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class ResourcesComponent implements OnInit {
           }))
         ),
         finalize(() => {
-          this.loading = false;
+          this.loading$.next(true);
         })
       );
   }
