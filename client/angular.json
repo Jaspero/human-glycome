@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -165,9 +168,7 @@
               "projects/cms/tsconfig.spec.json",
               "projects/cms/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -208,9 +209,7 @@
               "projects/website/src/favicon.ico",
               "projects/website/src/assets"
             ],
-            "styles": [
-              "projects/website/src/styles.scss"
-            ],
+            "styles": ["projects/website/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -272,9 +271,7 @@
               "projects/website/src/favicon.ico",
               "projects/website/src/assets"
             ],
-            "styles": [
-              "projects/website/src/styles.scss"
-            ],
+            "styles": ["projects/website/src/styles.scss"],
             "scripts": []
           }
         },
@@ -286,9 +283,7 @@
               "projects/website/tsconfig.spec.json",
               "projects/website/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {

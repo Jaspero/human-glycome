@@ -1,0 +1,82 @@
+/**
+ * Variables
+ *
+ * @import this file to use its features.
+ *
+ *============================================================================*/
+
+
+
+
+
+/* Accent colors
+ *============================================================================*/
+
+$acc-primary  : #00CED6;
+$acc-secondary: #112138;
+$acc-success  : limegreen;
+$acc-warning  : crimson;
+
+
+
+
+
+/* Background colors
+ *============================================================================*/
+
+// Light theme background colors:
+$bg-lt-primary  : #ffffff;
+$bg-lt-secondary: #F0F1F5;
+
+// Dark theme background colors:
+$bg-dt-primary  : #040404;
+$bg-dt-secondary: #1c1f24;
+
+
+
+
+
+/* Foreground colors
+ *============================================================================*/
+
+// Light theme foreground colors:
+$fg-lt-primary  : rgba(0,0,0,.9);
+$fg-lt-secondary: rgba(0,0,0,.65);
+$fg-lt-tertiary : rgba(0,0,0,.4);
+
+// Dark theme foreground colors:
+$fg-dt-primary  : rgba(255,255,255,.9);
+$fg-dt-secondary: rgba(255,255,255,.65);
+$fg-dt-tertiary : rgba(255,255,255,.4);
+
+
+
+
+
+/* Fonts
+ *============================================================================*/
+
+$font-primary  : 'Vollkorn', serif;
+$font-secondary: 'Ubuntu', sans-serif;
+
+
+
+
+
+/* @media breakpoints
+ *============================================================================*/
+/**
+ * Phone           :    0px - 600px
+ * Tablet portrait :  600px - 900px
+ * Tablet landscape:  900px - 1200px
+ * Desktop         : 1200px - 1800px
+ * Large desktop   : 1800px +
+ *
+ * Source:
+ * medium.freecodecamp.org/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862
+ */
+
+$screen-xs: 600px;
+$screen-s : 900px;
+$screen-m : 1200px;
+$screen-l : 1800px;

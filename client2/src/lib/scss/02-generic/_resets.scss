@@ -1,0 +1,109 @@
+/**
+ * Resets
+ *
+ * Style resets in order to synchronize different browser default styles.
+ *
+ *============================================================================*/
+
+
+
+
+
+/* Margin resets
+ *============================================================================*/
+
+body,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, pre,
+dl, dd, ol, ul,
+figure,
+hr,
+fieldset, legend {
+  margin:  0;
+}
+
+// Remove trailing margins from nested lists
+li > ol, ul {
+    margin-bottom: 0;
+}
+
+
+
+
+
+/* Table
+ *============================================================================*/
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+
+
+
+/* Inline -> inline-block
+ *============================================================================*/
+/**
+ * Makes it possible to set proper height, width, margins, and paddings.
+ */
+
+span,
+a {
+  display: inline-block;
+}
+
+
+
+
+
+/* Semantic markup
+ *============================================================================*/
+
+b, strong {
+  font-weight: 700;
+}
+
+i, em {
+  font-style: italic;
+}
+
+u {
+  text-decoration: underline;
+}
+
+// Prevent material icons from being italic
+i.material-icons {
+  font-style: normal;
+}
+
+
+
+
+
+/* Unset hyperlink style
+ *============================================================================*/
+
+a {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+
+
+/* Images
+ *============================================================================*/
+/**
+ * 1. Images will retain their aspect ratio on screen resizing. They will never
+ *    scale up to be larger than their original size.
+ * 2. Remove whitespace under the image.
+ */
+
+img {
+  max-width: 100%; /* [1] */
+  vertical-align: middle; /* [2] */
+}

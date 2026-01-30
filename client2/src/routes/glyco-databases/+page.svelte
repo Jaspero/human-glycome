@@ -1,0 +1,92 @@
+<script lang="ts">
+  export let data;
+</script>
+
+<div class="grid jc-center bg-img p-y-m">
+  <div class="col-6 col-m-8 col-s-10 col-xs-12">
+    <h1 class="c-dt-primary"><span class="title-dt">Glyco databases</span></h1>
+  </div>
+</div>
+
+<section class="p-b-l">
+  <div class="grid jc-center">
+    <div class="col-6 col-m-8 col-s-10 col-xs-12">
+      <div class="read-format">
+        <br />
+        <p>
+          The Human Glycome Project endorses the following glycan databases. To
+          include additional database to this list, please send short
+          description of the database to the Steering Committee of the Human
+          Glycome Project at <a
+            href="mailto:info@human-glycome.org?Subject=Glyco%20Database%20Addition%20Request"
+            target="_top">info@human-glycome.org</a
+          >
+        </p>
+
+        <h5>Glyco Databases</h5>
+        <ul>
+          {#each data.glycoDatabases as database}
+            <li>
+              <a href={database.link} target="_blank" rel="noopener"
+                >{database.link}</a
+              >
+              -
+              <span>{database.name}</span>
+            </li>
+          {/each}
+        </ul>
+
+        <h5 class="m-t-l">Further lists of glyco-databases can be found at:</h5>
+
+        <ul>
+          <li>
+            <a
+              href="https://www.expasy.org/glycomics"
+              target="_blank"
+              rel="noopener">https://www.expasy.org/glycomics</a
+            >
+          </li>
+          <li>
+            <a
+              href="http://www.glycoscience.de/db-overview.php"
+              target="_blank"
+              rel="noopener">http://www.glycoscience.de/db-overview.php</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.ncbi.nlm.nih.gov/glycans/"
+              target="_blank"
+              rel="noopener">https://www.ncbi.nlm.nih.gov/glycans/</a
+            >
+          </li>
+          <li>
+            <a
+              href="http://csdb.glycoscience.ru/"
+              target="_blank"
+              rel="noopener">http://csdb.glycoscience.ru/</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  h5 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+  a {
+    color: dodgerblue;
+    text-decoration: underline;
+  }
+</style>
