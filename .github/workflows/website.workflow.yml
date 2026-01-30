@@ -17,6 +17,8 @@ jobs:
           npm --prefix client2 ci
       - name: Build
         run: npm run build:website
+        env:
+          PUBLIC_FIREBASE_CONFIG: ${{ vars.PUBLIC_FIREBASE_CONFIG }}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
